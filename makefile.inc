@@ -328,7 +328,7 @@ RESOURCE_COMPILER = stmlib/tools/resources_compiler.py
 resources: $(TARGET)/resources.cc
 
 $(TARGET)/resources.cc: $(wildcard $(RESOURCES)/*.py)
-		python $(RESOURCE_COMPILER) $(RESOURCES)/resources.py
+		python2 $(RESOURCE_COMPILER) $(RESOURCES)/resources.py
 
 
 # ------------------------------------------------------------------------------
@@ -398,13 +398,13 @@ POSTLUDE = -c "sleep 200" -c "reset run" -c "shutdown"
 upload: $(UPLOAD_COMMAND)
 
 image_serial:
-	python $(STM32LOADER_PATH)stm32loader.py \
+	python2 $(STM32LOADER_PATH)stm32loader.py \
 		-p $(PGM_SERIAL_PORT) \
 		-b $(PGM_SERIAL_BAUD_RATE) \
 		-r -l 131072 image.bin
 
 upload_serial: $(TARGET_BIN)
-	python $(STM32LOADER_PATH)stm32loader.py \
+	python2 $(STM32LOADER_PATH)stm32loader.py \
 		-p $(PGM_SERIAL_PORT) \
 		-b $(PGM_SERIAL_BAUD_RATE) \
 		-e $(PGM_SERIAL_VERIFY) \
@@ -412,21 +412,21 @@ upload_serial: $(TARGET_BIN)
 		-w $(TARGET_BIN)
 
 upload_serial_no_erase: $(TARGET_BIN)
-	python $(STM32LOADER_PATH)stm32loader.py \
+	python2 $(STM32LOADER_PATH)stm32loader.py \
 		-p $(PGM_SERIAL_PORT) \
 		-b $(PGM_SERIAL_BAUD_RATE) $(PGM_SERIAL_VERIFY)\
 		-a $(BASE_ADDRESS) \
 		-w $(TARGET_BIN)
 
 upload_combo_serial: $(COMBO_BIN)
-	python $(STM32LOADER_PATH)stm32loader.py \
+	python2 $(STM32LOADER_PATH)stm32loader.py \
 		-p $(PGM_SERIAL_PORT) \
 		-b $(PGM_SERIAL_BAUD_RATE) \
 		-e $(PGM_SERIAL_VERIFY) \
 		-w $(COMBO_BIN)
 
 upload_combo_serial_no_erase: $(COMBO_BIN)
-	python $(STM32LOADER_PATH)stm32loader.py \
+	python2 $(STM32LOADER_PATH)stm32loader.py \
 		-p $(PGM_SERIAL_PORT) \
 		-b $(PGM_SERIAL_BAUD_RATE) $(PGM_SERIAL_VERIFY)\
 		-w $(COMBO_BIN)
